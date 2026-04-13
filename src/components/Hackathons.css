@@ -1,0 +1,297 @@
+.hackathons-section {
+  background:
+    radial-gradient(circle at top left, rgba(0, 255, 255, 0.08), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(0, 255, 65, 0.08), transparent 28%);
+}
+
+.hackathons-content {
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+.hackathons-section-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.45);
+  filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.25));
+  margin-bottom: 1.5rem;
+}
+
+.hackathons-hero {
+  display: grid;
+  grid-template-columns: minmax(320px, 1.2fr) minmax(260px, 0.8fr);
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+  align-items: stretch;
+}
+
+.hackathons-hero-copy,
+.hackathon-strength-card,
+.hackathon-card {
+  background: var(--surface-glass);
+  border: 1px solid var(--surface-border);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-soft);
+}
+
+.hackathons-hero-copy {
+  border-radius: 24px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hackathons-hero-copy::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.08), transparent 45%, rgba(0, 255, 65, 0.05));
+  pointer-events: none;
+}
+
+.hackathons-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.85rem;
+  margin-bottom: 1.1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 255, 255, 0.35);
+  color: var(--neon-cyan);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(0, 255, 255, 0.08);
+}
+
+.hackathons-hero-copy h3 {
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  line-height: 1.15;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  max-width: 14ch;
+  position: relative;
+}
+
+.hackathons-hero-copy p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  max-width: 62ch;
+  position: relative;
+}
+
+.hackathons-strengths {
+  display: grid;
+  gap: 1rem;
+}
+
+.hackathon-strength-card {
+  border-radius: 20px;
+  padding: 1.35rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 110px;
+}
+
+.strength-value {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  color: var(--neon-green);
+  margin-bottom: 0.4rem;
+}
+
+.strength-label {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.hackathons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.hackathon-card {
+  border-radius: 22px;
+  padding: 1.6rem;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hackathon-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 255, 255, 0.35);
+  box-shadow: 0 20px 50px rgba(0, 255, 65, 0.16);
+}
+
+.hackathon-card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.hackathon-badge,
+.hackathon-outcome {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.hackathon-badge {
+  color: var(--neon-cyan);
+}
+
+.hackathon-outcome {
+  color: var(--neon-green);
+}
+
+.hackathon-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.85rem;
+  color: var(--text-primary);
+}
+
+.hackathon-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  margin-bottom: 1rem;
+}
+
+.hackathon-meta span {
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: var(--surface-soft);
+  border: 1px solid rgba(0, 255, 65, 0.14);
+}
+
+.hackathon-description {
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 1.2rem;
+}
+
+.hackathon-stack,
+.hackathon-highlights,
+.hackathon-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.hackathon-stack {
+  margin-bottom: 1.15rem;
+}
+
+.hackathon-tag {
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  color: var(--neon-cyan);
+  background: rgba(0, 255, 255, 0.08);
+  font-size: 0.82rem;
+}
+
+.hackathon-highlights {
+  margin-bottom: 1.4rem;
+}
+
+.hackathon-highlight {
+  width: 100%;
+  padding-left: 1rem;
+  color: var(--text-secondary);
+  position: relative;
+}
+
+.hackathon-highlight::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6rem;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+  background: var(--neon-green);
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+}
+
+.hackathon-link {
+  flex: 1;
+  min-width: 110px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text-primary);
+  border: 1px solid rgba(0, 255, 65, 0.25);
+  background: rgba(0, 255, 65, 0.05);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.hackathon-link:hover {
+  color: var(--dark-bg);
+  background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
+  border-color: transparent;
+  box-shadow: 0 12px 28px rgba(0, 255, 65, 0.25);
+}
+
+@media (max-width: 1100px) {
+  .hackathons-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .hackathons-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hackathons-strengths {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .hackathons-hero-copy,
+  .hackathon-card {
+    padding: 1.35rem;
+  }
+
+  .hackathons-strengths {
+    grid-template-columns: 1fr;
+  }
+
+  .hackathon-card-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hackathon-links {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .hackathons-hero {
+    gap: 1.25rem;
+  }
+
+  .hackathons-hero-copy,
+  .hackathon-card,
+  .hackathon-strength-card {
+    padding: 1.1rem;
+  }
+
+  .hackathon-card h3 {
+    font-size: 1.2rem;
+  }
+}

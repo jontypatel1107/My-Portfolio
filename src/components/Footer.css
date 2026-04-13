@@ -1,0 +1,39 @@
+footer {
+  padding: 2rem 5%;
+  text-align: center;
+  border-top: 1px solid rgba(0,255,65,0.3);
+  color: var(--text-secondary);
+}
+
+.back-to-top {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  padding: 0.85rem 1.4rem;
+  border: 1px solid rgba(0,255,65,0.35);
+  border-radius: 999px;
+  background: rgba(0,255,65,0.08);
+  color: var(--neon-green);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: none;
+  transition: all 0.3s ease;
+}
+
+.back-to-top:hover {
+  background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
+  color: var(--dark-bg);
+  border-color: transparent;
+  box-shadow: 0 12px 28px rgba(0,255,65,0.24);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .back-to-top {
+    width: 100%;
+    max-width: 220px;
+    cursor: pointer;
+  }
+}
