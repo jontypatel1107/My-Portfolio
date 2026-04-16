@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jonty-patel.vercel.app/sitemap.xml
+Sitemap: https://jonty-patel-portfolio.netlify.app/sitemap.xml
