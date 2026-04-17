@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import AIAssistant from './components/AIAssistant';
 import CustomCursor from './components/CustomCursor';
 import ThreeBackground from './components/ThreeBackground';
+import IntroSplash from './components/IntroSplash';
 import './App.css';
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <IntroSplash />
         <CustomCursor />
         <ThreeBackground />
         <Navbar toggleTheme={toggleTheme} />
