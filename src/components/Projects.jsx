@@ -17,6 +17,16 @@ import weatherApiImg from '../assets/Weather-API--670x375.png';
 
 const Projects = () => {
   const containerRef = useRef(null);
+  const carouselRefs = useRef({});
+
+  const scrollCarousel = (sectionId, direction) => {
+    const carousel = carouselRefs.current[sectionId];
+    if (carousel) {
+      const cardWidth = carousel.querySelector('.project-card')?.offsetWidth || 320;
+      const scrollAmount = direction === 'left' ? -cardWidth : cardWidth;
+      carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
 
   const projectSections = [
     {
@@ -186,33 +196,56 @@ const Projects = () => {
             </div>
 
             {section.projects.length > 0 ? (
-              <div className="projects-grid">
-                {section.projects.map((project) => (
-                  <article
-                    key={`${section.id}-${project.title}`}
-                    className="project-card"
-                  >
-                    <div className="project-image">
-                      <img src={project.thumbnail} alt={project.title} />
-                    </div>
-                    <div className="project-content">
-                      <h4 className="project-title">{project.title}</h4>
-                      <p className="project-description">{project.description}</p>
-                      <div className="project-tech">
-                        {project.tech.map((tech) => (
-                          <span key={tech} className="tech-tag">{tech}</span>
-                        ))}
+              <div className="carousel-container">
+                <button
+                  className="carousel-arrow carousel-arrow-left"
+                  onClick={() => scrollCarousel(section.id, 'left')}
+                  aria-label="Scroll left"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                  </svg>
+                </button>
+                <div
+                  className="projects-grid"
+                  ref={(el) => (carouselRefs.current[section.id] = el)}
+                >
+                  {section.projects.map((project) => (
+                    <article
+                      key={`${section.id}-${project.title}`}
+                      className="project-card"
+                    >
+                      <div className="project-image">
+                        <img src={project.thumbnail} alt={project.title} />
                       </div>
-                      <div className="project-links">
-                        <a href={project.links.demo} className="project-link" target="_blank" rel="noopener noreferrer">Live Demo</a>
-                        <a href={project.links.github} className="project-link" target="_blank" rel="noopener noreferrer">GitHub</a>
-                        {project.links.video && project.links.video !== '#' && (
-                          <a href={project.links.video} className="project-link" target="_blank" rel="noopener noreferrer">Video</a>
-                        )}
+                      <div className="project-content">
+                        <h4 className="project-title">{project.title}</h4>
+                        <p className="project-description">{project.description}</p>
+                        <div className="project-tech">
+                          {project.tech.map((tech) => (
+                            <span key={tech} className="tech-tag">{tech}</span>
+                          ))}
+                        </div>
+                        <div className="project-links">
+                          <a href={project.links.demo} className="project-link" target="_blank" rel="noopener noreferrer">Live Demo</a>
+                          <a href={project.links.github} className="project-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+                          {project.links.video && project.links.video !== '#' && (
+                            <a href={project.links.video} className="project-link" target="_blank" rel="noopener noreferrer">Video</a>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  </article>
-                ))}
+                    </article>
+                  ))}
+                </div>
+                <button
+                  className="carousel-arrow carousel-arrow-right"
+                  onClick={() => scrollCarousel(section.id, 'right')}
+                  aria-label="Scroll right"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </button>
               </div>
             ) : (
               <div className="project-empty-state">

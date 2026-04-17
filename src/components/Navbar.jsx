@@ -28,10 +28,7 @@ const Navbar = ({ toggleTheme }) => {
     <nav>
       <a href="#home" className="logo" onClick={(e) => handleScroll(e, '#home')} aria-label="Go to home section">
         <span className="logo-mark">JP</span>
-        <span className="logo-text">
-          <span className="logo-name">Jonty Patel</span>
-          <span className="logo-tag">Portfolio</span>
-        </span>
+        <span className="logo-name">Jonty Patel</span>
       </a>
       <button
         type="button"

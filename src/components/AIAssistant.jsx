@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './AIAssistant.css';
 
 const AIAssistant = () => {
@@ -295,8 +295,10 @@ const AIAssistant = () => {
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [showPrompts, setShowPrompts] = useState(true);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
+  const chatRef = useRef(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -305,6 +307,24 @@ const AIAssistant = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (chatRef.current && !chatRef.current.contains(event.target) && !event.target.closest('.ai-assistant-button')) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen]);
 
   const knowledgeBase = {
     skills: {
@@ -534,6 +554,8 @@ const AIAssistant = () => {
     const messageToSend = (messageOverride ?? inputValue).trim();
     if (!messageToSend) return;
 
+    setShowPrompts(false);
+
     const userMessage = {
       type: 'user',
       content: messageToSend,
@@ -544,13 +566,12 @@ const AIAssistant = () => {
     setInputValue('');
     setIsTyping(true);
 
-    // Simulate typing delay
     setTimeout(() => {
       const botResponse = getResponse(messageToSend);
 
       setMessages(prev => [...prev, botResponse]);
       setIsTyping(false);
-    }, 1000 + Math.random() * 1000); // Random delay between 1-2 seconds
+    }, 1000 + Math.random() * 1000);
   };
 
   const handleKeyPress = (e) => {
@@ -571,33 +592,39 @@ const AIAssistant = () => {
     <>
       {/* Chat Button */}
       <div className="ai-assistant-button" onClick={toggleChat}>
-        <div className="ai-icon">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-          </svg>
+        <div className="ai-floating-label">
+          AI Assistant
         </div>
-        <div className="ai-pulse"></div>
+        <div className="ai-assistant-icon">
+          <div className="ai-antenna"></div>
+          <div className="ai-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9c.83 0 1.5-.67 1.5-1.5S7.83 8 7 8s-1.5.67-1.5 1.5S6.17 11 7 11zm10 0c.83 0 1.5-.67 1.5-1.5S17.83 8 17 8s-1.5.67-1.5 1.5.67 1.5 1.5 1.5zm-5 6c2.33 0 4.32-1.45 5.12-3.5H6.88c.8 2.05 2.79 3.5 5.12 3.5z"/>
+            </svg>
+          </div>
+          <div className="ai-sparkles">
+            <div className="ai-sparkle"></div>
+            <div className="ai-sparkle"></div>
+            <div className="ai-sparkle"></div>
+          </div>
+          <div className="ai-pulse"></div>
+        </div>
       </div>
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="ai-assistant-chat">
+        <div className="ai-assistant-chat" ref={chatRef}>
           <div className="chat-header">
             <div className="chat-avatar">
               <svg viewBox="0 0 24 24" fill="currentColor">
-                {/* Chat bubble body */}
-                <path d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 3 .97 4.29L2 22l6.29-.97C9.95 21.63 11 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.41 0-2.73-.28-3.97-.77l-.28-.14-2.9.44.44-2.9-.14-.28C4.28 14.73 4 13.41 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/>
-                {/* Dots indicator */}
-                <circle cx="8" cy="12" r="1.5" fill="currentColor"/>
-                <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
-                <circle cx="16" cy="12" r="1.5" fill="currentColor"/>
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9c.83 0 1.5-.67 1.5-1.5S7.83 8 7 8s-1.5.67-1.5 1.5S6.17 11 7 11zm10 0c.83 0 1.5-.67 1.5-1.5S17.83 8 17 8s-1.5.67-1.5 1.5.67 1.5 1.5 1.5zm-5 6c2.33 0 4.32-1.45 5.12-3.5H6.88c.8 2.05 2.79 3.5 5.12 3.5z"/>
               </svg>
             </div>
             <div className="chat-info">
-              <h3>Jonty's AI Assistant</h3>
-              <span>Online</span>
+              <h3>AI Assistant</h3>
+              <span>Online • Ready to Help</span>
             </div>
-            <button className="chat-close" onClick={toggleChat}>
+            <button className="chat-close" onClick={toggleChat} aria-label="Close chat">
               <svg viewBox="0 0 24 24" fill="currentColor">
                 <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
               </svg>
@@ -607,6 +634,9 @@ const AIAssistant = () => {
           <div className="chat-messages">
             {messages.map((message, index) => (
               <div key={index} className={`message ${message.type}`}>
+                <div className="message-sender">
+                  {message.type === 'user' ? 'You' : 'AI Assistant'}
+                </div>
                 <div className="message-content">
                   {message.content}
                 </div>
@@ -643,7 +673,7 @@ const AIAssistant = () => {
             <div ref={messagesEndRef} />
           </div>
 
-          <div className="suggested-prompts">
+          <div className={`suggested-prompts ${!showPrompts ? 'hidden' : ''}`}>
             {suggestedPrompts.map((prompt) => (
               <button
                 key={prompt}

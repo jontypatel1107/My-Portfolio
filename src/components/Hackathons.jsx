@@ -31,9 +31,9 @@ const Hackathons = () => {
       stack: ['Coding Contest', 'Software Edition', 'Technical Participation'],
       highlights: ['Active participation', 'Software-focused competition', 'Organized by TechXCV Club'],
       links: {
-        demo: '#',
         github: 'https://github.com/jontypatel1107/Air-Talks'
-      }
+      },
+      isMobileApp: true
     },
     {
       badge: 'Innovation Challenge',
@@ -146,7 +146,11 @@ const Hackathons = () => {
               </div>
 
               <div className="hackathon-links">
-                <a href={hackathon.links.demo} className="hackathon-link">Demo</a>
+                {hackathon.isMobileApp ? (
+                  <span className="mobile-app-badge">📱 Mobile App</span>
+                ) : (
+                  <a href={hackathon.links.demo} className="hackathon-link">Demo</a>
+                )}
                 <a href={hackathon.links.github} className="hackathon-link">GitHub</a>
               </div>
             </article>

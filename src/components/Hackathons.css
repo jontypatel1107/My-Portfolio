@@ -244,6 +244,20 @@
   box-shadow: 0 12px 28px rgba(0, 255, 65, 0.25);
 }
 
+.mobile-app-badge {
+  flex: 1;
+  min-width: 110px;
+  text-align: center;
+  color: var(--neon-cyan);
+  border: 1px solid rgba(0, 255, 255, 0.25);
+  background: rgba(0, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
 @media (max-width: 1100px) {
   .hackathons-grid {
     grid-template-columns: 1fr;
