@@ -11,9 +11,14 @@ A modern, animated portfolio website built with React, Three.js, and Vite.
 - 📱 Fully responsive design
 - ⚡ Fast performance with Vite
 - 🎯 Smooth scroll animations
-- 💼 Projects showcase
+- 🔄 Active section highlighting in navbar
+- 🤖 AI Chat Assistant for visitors to learn about Jonty
+- 💼 Projects showcase with horizontal scrolling carousel on mobile
 - 🛠️ Skills section with progress bars
+- 📜 Certificates showcase
+- 🏆 Hackathons showcase with mobile app badge
 - 📧 Contact section with social links
+- 🚀 Intro splash screen animation
 
 ## Tech Stack
 
@@ -22,6 +27,7 @@ A modern, animated portfolio website built with React, Three.js, and Vite.
 - React Router DOM
 - Vite
 - CSS3 with custom animations
+- EmailJS for contact form
 
 ## Installation
 
@@ -53,13 +59,20 @@ portfolio-react/
 │   ├── components/
 │   │   ├── Navbar.jsx
 │   │   ├── Hero.jsx
+│   │   ├── About.jsx
 │   │   ├── Skills.jsx
+│   │   ├── Certificates.jsx
 │   │   ├── Projects.jsx
+│   │   ├── Hackathons.jsx
 │   │   ├── Contact.jsx
 │   │   ├── Footer.jsx
+│   │   ├── AIAssistant.jsx
 │   │   ├── CustomCursor.jsx
 │   │   ├── ThreeBackground.jsx
+│   │   ├── IntroSplash.jsx
+│   │   ├── LeetCode.jsx
 │   │   └── [corresponding .css files]
+│   ├── assets/
 │   ├── App.jsx
 │   ├── App.css
 │   ├── main.jsx
@@ -76,9 +89,13 @@ portfolio-react/
 Edit the following files to customize with your information:
 
 - **Hero Section**: `src/components/Hero.jsx`
+- **About Section**: `src/components/About.jsx`
 - **Skills**: `src/components/Skills.jsx`
+- **Certificates**: `src/components/Certificates.jsx`
 - **Projects**: `src/components/Projects.jsx`
-- **Social Links**: `src/components/Contact.jsx`
+- **Hackathons**: `src/components/Hackathons.jsx`
+- **Contact/Social Links**: `src/components/Contact.jsx`
+- **AI Assistant**: `src/components/AIAssistant.jsx` (update knowledge base)
 
 ### Theme Colors
 
@@ -97,6 +114,19 @@ Update CSS variables in `src/App.css`:
 }
 ```
 
+### AI Assistant Configuration
+
+The AI chatbot can be customized in `src/components/AIAssistant.jsx`:
+- Update `suggestedPrompts` array for quick action buttons
+- Modify `knowledgeBase` object for different responses
+- Add new project/certificate/hackathon knowledge in respective arrays
+
+### Contact Form
+
+Configure EmailJS in `src/components/Contact.jsx`:
+- Update `emailjs.init()` with your public key
+- Update service ID and template ID in `emailjs.send()`
+
 ## Browser Support
 
 - Chrome (latest)
@@ -110,6 +140,7 @@ Update CSS variables in `src/App.css`:
 - Optimized Three.js particle rendering
 - Smooth 60fps animations
 - Mobile-optimized (cursor disabled on mobile)
+- Responsive project carousel with scroll snap
 
 ## License
 
