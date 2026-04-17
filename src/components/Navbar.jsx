@@ -3,6 +3,7 @@ import './Navbar.css';
 
 const Navbar = ({ toggleTheme }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   const handleScroll = (e, targetId) => {
     e.preventDefault();
@@ -24,6 +25,44 @@ const Navbar = ({ toggleTheme }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  useEffect(() => {
+    const sections = document.querySelectorAll('section[id]');
+    
+    const observerOptions = {
+      root: null,
+      rootMargin: '-50% 0px -50% 0px',
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+
+    return () => {
+      sections.forEach((section) => {
+        observer.unobserve(section);
+      });
+    };
+  }, []);
+
+  const navItems = [
+    { id: 'home', label: 'Home' },
+    { id: 'about', label: 'About' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'certificates', label: 'Certificates' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'hackathons', label: 'Hackathons' },
+    { id: 'contact', label: 'Contact' }
+  ];
+
   return (
     <nav>
       <a href="#home" className="logo" onClick={(e) => handleScroll(e, '#home')} aria-label="Go to home section">
@@ -42,13 +81,17 @@ const Navbar = ({ toggleTheme }) => {
         <span></span>
       </button>
       <ul className={`nav-links ${isMenuOpen ? 'nav-links-open' : ''}`}>
-        <li><a href="#home" onClick={(e) => handleScroll(e, '#home')}>Home</a></li>
-        <li><a href="#about" onClick={(e) => handleScroll(e, '#about')}>About</a></li>
-        <li><a href="#skills" onClick={(e) => handleScroll(e, '#skills')}>Skills</a></li>
-        <li><a href="#certificates" onClick={(e) => handleScroll(e, '#certificates')}>Certificates</a></li>
-        <li><a href="#projects" onClick={(e) => handleScroll(e, '#projects')}>Projects</a></li>
-        <li><a href="#hackathons" onClick={(e) => handleScroll(e, '#hackathons')}>Hackathons</a></li>
-        <li><a href="#contact" onClick={(e) => handleScroll(e, '#contact')}>Contact</a></li>
+        {navItems.map((item) => (
+          <li key={item.id}>
+            <a
+              href={`#${item.id}`}
+              onClick={(e) => handleScroll(e, `#${item.id}`)}
+              className={activeSection === item.id ? 'active' : ''}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
       </ul>
       <button className="theme-toggle" onClick={toggleTheme}>
         🌓 Mode
